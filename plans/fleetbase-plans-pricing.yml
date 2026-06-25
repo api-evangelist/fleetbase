@@ -1,0 +1,197 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fleetbase
+providerId: fleetbase
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Logistics
+- Fleet Management
+- Supply Chain
+- Last Mile Delivery
+- Open Source
+- Plans
+description: >-
+  Fleetbase is dual-licensed. The full platform and its REST API can be
+  self-hosted for free under AGPL-3.0. Fleetbase Cloud is a managed,
+  consumption-based offering metered in resource "units" (e.g. an order
+  consumes 2 units, a contact or place 1 unit, a user 5 units) with monthly
+  plans starting at $25 and a $0.75 per-unit overage. A one-time $2,500
+  self-hosted deployment service and a Fleetbase Commercial License (FCL,
+  for waiving AGPL obligations) are also offered.
+notes: >-
+  Cloud plan unit allowances and overage rates as published on the Fleetbase
+  pricing page; verify current tiers, top-ups, and license terms on the page.
+sources:
+- https://fleetbase.io/pricing
+- https://docs.fleetbase.io
+plans:
+- id: fleetbase-self-hosted-oss
+  name: Self-Hosted (AGPL-3.0)
+  type: free
+  description: >-
+    Run the complete open-source Fleetbase platform and REST API on your own
+    infrastructure at no software cost under the AGPL-3.0 license. Unlimited
+    users and drivers; you operate and scale it yourself.
+  entries:
+  - label: Open-Source Self-Host
+    name: self_hosted_oss
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: perpetual
+    geo: global
+    unit: 1
+    price: $0 (AGPL-3.0)
+    userMultiplied: false
+  elements:
+  - name: Orders
+  - name: Places
+  - name: Contacts
+  - name: Drivers & Vehicles
+  - name: Fleets & Zones
+  - name: Service Rates
+  - name: Tracking
+  - name: Webhooks
+- id: fleetbase-cloud
+  name: Fleetbase Cloud
+  type: usage
+  description: >-
+    Managed Fleetbase Cloud with monthly plans that include a pool of resource
+    units consumed by API/platform activity. Unlimited users and drivers,
+    automatic updates, and full platform access on every tier. Overage billed
+    at $0.75 per unit; mid-month top-ups available.
+  entries:
+  - label: Micro
+    name: cloud_micro
+    type: flat
+    metric: units
+    limit: 100
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $25 / month (100 units)
+    userMultiplied: false
+  - label: Lite
+    name: cloud_lite
+    type: flat
+    metric: units
+    limit: 180
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $50 / month (180 units)
+    userMultiplied: false
+  - label: Essential
+    name: cloud_essential
+    type: flat
+    metric: units
+    limit: 240
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $100 / month (240 units)
+    userMultiplied: false
+  - label: Starter
+    name: cloud_starter
+    type: flat
+    metric: units
+    limit: 300
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $200 / month (300 units)
+    userMultiplied: false
+  - label: Unit Overage
+    name: cloud_overage
+    type: usage
+    metric: units
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.75 per unit
+    userMultiplied: false
+  - label: Mid-Month Top-Up
+    name: cloud_topup
+    type: usage
+    metric: units
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 100
+    price: $90 (100 units) up to $700 (1,000 units)
+    userMultiplied: false
+  elements:
+  - name: Orders (2 units each)
+  - name: Contacts (1 unit each)
+  - name: Places (1 unit each)
+  - name: Users (5 units each)
+- id: fleetbase-self-hosted-deployment
+  name: Self-Hosted Deployment Service
+  type: one-time
+  description: >-
+    One-time professional deployment of Fleetbase onto your servers or cloud,
+    including CI/CD pipeline, environment setup with branding, and go-live
+    support.
+  entries:
+  - label: Deployment Service
+    name: deployment_service
+    type: flat
+    metric: service
+    limit: 1
+    timeFrame: one-time
+    geo: global
+    unit: 1
+    price: $2,500 one-time
+    userMultiplied: false
+  elements:
+  - name: Full Deployment
+  - name: CI/CD Configuration
+  - name: Go-Live Support
+- id: fleetbase-commercial-license
+  name: Fleetbase Commercial License (FCL)
+  type: enterprise
+  description: >-
+    Commercial license that waives AGPL-3.0 copyleft obligations for proprietary
+    extensions and redistribution, available as annual, monthly, or perpetual
+    (per major/minor version) terms.
+  entries:
+  - label: Annual License
+    name: fcl_annual
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $25,000 / year
+    userMultiplied: false
+  - label: Monthly License
+    name: fcl_monthly
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $2,500 / month
+    userMultiplied: false
+  - label: Perpetual (Major Version)
+    name: fcl_perpetual_major
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: perpetual
+    geo: global
+    unit: 1
+    price: $25,000 perpetual
+    userMultiplied: false
+  elements:
+  - name: AGPL Waiver
+  - name: Proprietary Distribution
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

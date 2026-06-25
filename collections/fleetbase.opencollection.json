@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Orders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List orders", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/orders" },
+          "docs": "Returns a paginated list of orders."
+        },
+        {
+          "info": { "name": "Create an order", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/orders", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a new delivery order with pickup, dropoff, and entities."
+        },
+        {
+          "info": { "name": "Retrieve an order", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/orders/{id}" },
+          "docs": "Retrieves a single order by its public ID."
+        },
+        {
+          "info": { "name": "Update an order", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.fleetbase.io/v1/orders/{id}", "body": { "type": "json", "data": "{}" } },
+          "docs": "Updates an existing order."
+        },
+        {
+          "info": { "name": "Dispatch an order", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://api.fleetbase.io/v1/orders/{id}/dispatch" },
+          "docs": "Dispatches an order to an assigned driver."
+        },
+        {
+          "info": { "name": "Cancel an order", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.fleetbase.io/v1/orders/{id}" },
+          "docs": "Cancels an order."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Places", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List places", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/places" },
+          "docs": "Returns a list of places."
+        },
+        {
+          "info": { "name": "Create a place", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/places", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a geocoded place used as a pickup or dropoff."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Contacts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List contacts", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/contacts" },
+          "docs": "Returns a list of contacts."
+        },
+        {
+          "info": { "name": "Create a contact", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/contacts", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a customer or facilitator contact."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Drivers & Vehicles", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List drivers", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/drivers" },
+          "docs": "Returns a list of drivers."
+        },
+        {
+          "info": { "name": "Create a driver", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/drivers", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a driver."
+        },
+        {
+          "info": { "name": "List vehicles", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/vehicles" },
+          "docs": "Returns a list of vehicles."
+        },
+        {
+          "info": { "name": "Create a vehicle", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/vehicles", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a vehicle."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Fleets & Zones", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List fleets", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/fleets" },
+          "docs": "Returns a list of fleets."
+        },
+        {
+          "info": { "name": "Create a fleet", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/fleets", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a fleet grouping drivers and vehicles."
+        },
+        {
+          "info": { "name": "List zones", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/zones" },
+          "docs": "Returns a list of zones (geofences)."
+        },
+        {
+          "info": { "name": "Create a zone", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/zones", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a service-area zone with a GeoJSON border."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Service Rates", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List service rates", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/service-rates" },
+          "docs": "Returns a list of service rates."
+        },
+        {
+          "info": { "name": "Generate a delivery quote", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/service-quotes", "body": { "type": "json", "data": "{}" } },
+          "docs": "Calculates a delivery quote from configured service rates."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tracking", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Retrieve tracking status", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/tracking/{trackingNumber}" },
+          "docs": "Returns tracking status and activity for a tracking number."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhook endpoints", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.fleetbase.io/v1/webhook-endpoints" },
+          "docs": "Returns a list of registered webhook endpoints."
+        },
+        {
+          "info": { "name": "Create a webhook endpoint", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.fleetbase.io/v1/webhook-endpoints", "body": { "type": "json", "data": "{}" } },
+          "docs": "Registers a webhook endpoint for event subscriptions."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+aid: fleetbase
+url: https://raw.githubusercontent.com/api-evangelist/fleetbase/refs/heads/main/apis.yml
+name: Fleetbase
+kind: company
+description: Fleetbase is an open-source, modular logistics and supply chain operating
+  system (LSOS) for managing orders, drivers, vehicles, fleets, and last-mile delivery.
+  Its RESTful API at https://api.fleetbase.io/v1 exposes orders, places, contacts,
+  drivers, vehicles, fleets, zones, service rates, tracking, and webhooks, available
+  both self-hosted under AGPL-3.0 and as a managed Fleetbase Cloud offering.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Logistics
+- Fleet Management
+- Supply Chain
+- Last Mile Delivery
+- Open Source
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: fleetbase:orders
+  name: Fleetbase Orders API
+  tags:
+  - Orders
+  - Dispatch
+  - Delivery
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: https://docs.fleetbase.io/developers/api/
+    type: APIReference
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Create, list, update, dispatch, and cancel delivery orders with pickup
+    and dropoff places, payloads, entities, and scheduling.
+- aid: fleetbase:places
+  name: Fleetbase Places API
+  tags:
+  - Places
+  - Locations
+  - Geocoding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Manage addressable places (locations) with geocoded coordinates used
+    as pickup and dropoff points across orders.
+- aid: fleetbase:contacts
+  name: Fleetbase Contacts API
+  tags:
+  - Contacts
+  - Customers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Manage customer and facilitator contacts attached to orders, places,
+    and organizations.
+- aid: fleetbase:drivers-vehicles
+  name: Fleetbase Drivers & Vehicles API
+  tags:
+  - Drivers
+  - Vehicles
+  - Telematics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Manage drivers and vehicles, their status, assignment to orders, and
+    real-time location for fleet operations.
+- aid: fleetbase:fleets-zones
+  name: Fleetbase Fleets & Zones API
+  tags:
+  - Fleets
+  - Zones
+  - Geofences
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Group drivers and vehicles into fleets and define operational service
+    areas as zones (geofences) for dispatch and coverage.
+- aid: fleetbase:service-rates
+  name: Fleetbase Service Rates API
+  tags:
+  - Service Rates
+  - Pricing
+  - Quotes
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Define service rates and rate-fee components to price orders by distance,
+    zone, or per-drop, and generate delivery quotes.
+- aid: fleetbase:tracking
+  name: Fleetbase Tracking API
+  tags:
+  - Tracking
+  - Telemetry
+  - Real Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Retrieve tracking status, position telemetry, and tracking-number activity
+    for orders and entities in transit.
+- aid: fleetbase:webhooks
+  name: Fleetbase Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.fleetbase.io/api/
+  baseURL: https://api.fleetbase.io/v1
+  properties:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+  - url: openapi/fleetbase-openapi.yml
+    type: OpenAPI
+  - url: collections/fleetbase.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fleetbase.opencollection.json
+    type: OpenCollection
+  description: Register webhook endpoints to subscribe to order, driver, and entity
+    lifecycle events delivered as signed HTTP callbacks.
+common:
+- type: GitHubOrganization
+  url: https://github.com/fleetbase
+- type: LinkedIn
+  url: https://www.linkedin.com/company/fleetbase
+- type: Website
+  url: https://www.fleetbase.io
+- type: Documentation
+  url: https://docs.fleetbase.io
+- type: Plans
+  url: plans/fleetbase-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fleetbase-rate-limits.yml
+- type: FinOps
+  url: finops/fleetbase-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,119 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Fleetbase
+providerId: fleetbase
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Logistics
+- Fleet Management
+- Supply Chain
+- Last Mile Delivery
+- Open Source
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Fleetbase spend. Fleetbase is dual-licensed: self-hosting the
+  AGPL-3.0 platform shifts cost from software fees to self-managed
+  infrastructure and operations, while Fleetbase Cloud bills a monthly plan fee
+  plus consumption-based resource units ($0.75/unit overage) where units are
+  consumed by orders (2), places/contacts (1), users (5), and other resources.
+  Optional one-time deployment services and a Fleetbase Commercial License are
+  separate line items.
+notes: >-
+  Unit weights, plan allowances, and license fees are subject to change; verify
+  against the Fleetbase pricing page during reconciliation.
+sources:
+- https://fleetbase.io/pricing
+- https://docs.fleetbase.io
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Fleetbase
+serviceCategory: Logistics and Supply Chain
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Fleetbase Cloud
+  ServiceCategory: Logistics and Supply Chain
+  ProviderName: Fleetbase
+  PublisherName: Fleetbase
+  InvoiceIssuerName: Fleetbase
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: plan_subscription
+  description: Monthly Fleetbase Cloud plan fee including a bundled resource-unit allowance.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: resource_units
+  description: Resource units consumed by platform/API activity (orders, places, contacts, users, etc.).
+  unit: units
+  aggregation: sum
+  dimensions:
+  - account
+  - resource_type
+- name: unit_overage
+  description: Units consumed beyond the plan allowance, billed at $0.75 per unit.
+  unit: units
+  aggregation: sum
+  dimensions:
+  - account
+- name: unit_topup
+  description: Mid-month resource-unit top-up purchases.
+  unit: units
+  aggregation: sum
+  dimensions:
+  - account
+- name: deployment_service
+  description: One-time self-hosted deployment service fee.
+  unit: engagements
+  aggregation: sum
+  dimensions:
+  - account
+- name: commercial_license
+  description: Fleetbase Commercial License fees (annual, monthly, or perpetual) waiving AGPL obligations.
+  unit: licenses
+  aggregation: sum
+  dimensions:
+  - account
+  - term
+- name: self_hosted_infrastructure
+  description: Self-managed compute, storage, and bandwidth for AGPL self-hosted deployments (external to Fleetbase billing).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - resource
+principles:
+- name: Visibility
+  description: Track resource-unit consumption by type in the Fleetbase Cloud console; for self-hosting, monitor underlying infrastructure spend.
+- name: Allocation
+  description: Tag API keys and orders per workload/team and map resource-unit burn to internal cost centers.
+- name: Optimization
+  description: >-
+    Right-size the Cloud plan to expected unit volume, batch low-value resource
+    creation to avoid overage, and evaluate AGPL self-hosting vs Cloud as volume
+    grows; consider the Commercial License only when AGPL obligations are blocking.
+- name: Accountability
+  description: Assign owners per project/key and review monthly unit consumption and overage against plan allowance.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

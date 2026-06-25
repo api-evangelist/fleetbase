@@ -1,0 +1,87 @@
+aid: fleetbase
+name: Fleetbase
+review:
+  question: Does Fleetbase expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Fleetbase documents real-time communication "through sockets" and
+    extensive webhook support, but its public, documented integration
+    surface for third-party developers is the REST API at
+    https://api.fleetbase.io/v1 plus outbound HTTP webhooks. The socket
+    layer is an internal real-time transport for the Fleetbase console and
+    driver app rather than a documented public WebSocket API with a stable
+    channel/message contract, so no AsyncAPI document was authored.
+findings:
+  summary: |
+    Fleetbase's documented public API is REST over HTTPS, authenticated with
+    Bearer API keys (flb_test_ / flb_live_) against the base URL
+    https://api.fleetbase.io/v1. Resources include orders, places, contacts,
+    drivers, vehicles, fleets, zones, service rates, tracking, and webhook
+    endpoints, accessed with standard GET/POST/PUT/PATCH/DELETE methods and
+    limit/offset/page pagination. Event delivery to third parties is handled
+    via outbound, signed HTTP webhooks rather than a developer-facing
+    WebSocket API. Fleetbase mentions internal "socket" real-time
+    communication powering its console and apps, but does not publish a
+    documented public WebSocket (ws:// or wss://) channel contract.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.fleetbase.io/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound signed HTTP callbacks to subscriber-registered endpoints for order/driver/entity lifecycle events.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: Internal socket real-time layer powers the console and driver app; no public WebSocket channel/message contract is documented for third-party developers as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.fleetbase.io/v1/orders
+    - POST   https://api.fleetbase.io/v1/orders
+    - GET    https://api.fleetbase.io/v1/orders/{id}
+    - PUT    https://api.fleetbase.io/v1/orders/{id}
+    - DELETE https://api.fleetbase.io/v1/orders/{id}
+    - PATCH  https://api.fleetbase.io/v1/orders/{id}/dispatch
+    - GET    https://api.fleetbase.io/v1/places
+    - POST   https://api.fleetbase.io/v1/places
+    - GET    https://api.fleetbase.io/v1/contacts
+    - POST   https://api.fleetbase.io/v1/contacts
+    - GET    https://api.fleetbase.io/v1/drivers
+    - POST   https://api.fleetbase.io/v1/drivers
+    - GET    https://api.fleetbase.io/v1/vehicles
+    - POST   https://api.fleetbase.io/v1/vehicles
+    - GET    https://api.fleetbase.io/v1/fleets
+    - POST   https://api.fleetbase.io/v1/fleets
+    - GET    https://api.fleetbase.io/v1/zones
+    - POST   https://api.fleetbase.io/v1/zones
+    - GET    https://api.fleetbase.io/v1/service-rates
+    - POST   https://api.fleetbase.io/v1/service-quotes
+    - GET    https://api.fleetbase.io/v1/tracking/{trackingNumber}
+    - GET    https://api.fleetbase.io/v1/webhook-endpoints
+    - POST   https://api.fleetbase.io/v1/webhook-endpoints
+sources:
+  - url: https://docs.fleetbase.io/api/
+    type: Documentation
+    note: REST API overview - base URL https://api.fleetbase.io/v1, Bearer key auth, 40+ resource types, limit/offset/page pagination.
+  - url: https://docs.fleetbase.io/developers/api/
+    type: APIReference
+    note: Developer guide showing Order endpoints including PATCH /orders/{id}/dispatch and the flb_test_ / flb_live_ key prefixes.
+  - url: https://docs.fleetbase.io/developers/introduction/
+    type: Documentation
+    note: States Fleetbase offers a RESTful API, real-time communication through sockets, and extensive webhook support.
+  - url: https://fleetbase.io/pricing
+    type: Pricing
+    note: Distinguishes free AGPL-3.0 self-hosting from managed Fleetbase Cloud unit-based plans and the Commercial License.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No documented public WebSocket channel/message contract exists for
+    third-party developers; event integration is via outbound HTTP webhooks.
+    The socket transport is internal to Fleetbase's own clients, so no
+    AsyncAPI document was authored. The apis.yml catalogs the REST surface
+    and webhook endpoints.

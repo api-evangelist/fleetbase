@@ -1,0 +1,67 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fleetbase
+providerId: fleetbase
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Logistics
+- Fleet Management
+- Supply Chain
+- Last Mile Delivery
+- Open Source
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Fleetbase REST API uses standard HTTP semantics and request-side
+  pagination (limit / offset / page) with a default page size of 25 and a
+  maximum of 100 records per list request. On Fleetbase Cloud, consumption is
+  governed primarily by the monthly resource-unit allowance of the plan rather
+  than published per-second request quotas; self-hosted deployments are bounded
+  only by the operator's own infrastructure. Specific numeric request-rate
+  limits are not publicly documented and are not reconciled in this artifact.
+notes: >-
+  On reconciliation, confirm whether Fleetbase Cloud publishes per-key request
+  throttles and the throttled response status code; self-hosted limits are
+  operator-defined.
+sources:
+- https://docs.fleetbase.io/api/
+- https://fleetbase.io/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: List Page Size
+  scope: request
+  metric: records
+  limit: 25 default / 100 maximum
+  notes: Controlled via limit / offset / page query parameters on list endpoints.
+- name: Cloud Resource Units
+  scope: account
+  metric: units
+  limit: per plan allowance
+  notes: >-
+    Fleetbase Cloud meters platform/API activity in resource units; exceeding
+    the monthly allowance incurs $0.75-per-unit overage rather than hard throttling.
+- name: Request Rate
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Numeric per-second/per-minute request throttles are not publicly documented.
+- name: Self-Hosted
+  scope: deployment
+  metric: requests
+  limit: operator-defined
+  notes: Self-hosted AGPL deployments are bounded only by the operator's own infrastructure and gateway configuration.
+policies:
+- name: Pagination
+  description: List endpoints paginate via limit / offset / page; default 25, max 100 records.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor 429 / Retry-After responses where returned.
+- name: Test Mode
+  description: Requests with flb_test_ keys never hit production data and incur no cost, enabling integration testing without consuming live quota.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
