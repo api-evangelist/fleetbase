@@ -180,6 +180,8 @@ apis:
   description: Register webhook endpoints to subscribe to order, driver, and entity
     lifecycle events delivered as signed HTTP callbacks.
 common:
+- type: AgenticAccess
+  url: agentic-access/fleetbase-agentic-access.yml
 - type: DomainSecurity
   url: security/fleetbase-domain-security.yml
 - type: Authentication
