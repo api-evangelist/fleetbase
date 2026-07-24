@@ -1,0 +1,154 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Places API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Places
+  description: Addressable geocoded locations.
+paths:
+  /places:
+    get:
+      operationId: listPlaces
+      tags:
+      - Places
+      summary: List places
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of places.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Place'
+    post:
+      operationId: createPlace
+      tags:
+      - Places
+      summary: Create a place
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Place'
+      responses:
+        '200':
+          description: The created place.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+  /places/{id}:
+    get:
+      operationId: getPlace
+      tags:
+      - Places
+      summary: Retrieve a place
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested place.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+    put:
+      operationId: updatePlace
+      tags:
+      - Places
+      summary: Update a place
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Place'
+      responses:
+        '200':
+          description: The updated place.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+    delete:
+      operationId: deletePlace
+      tags:
+      - Places
+      summary: Delete a place
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the place was deleted.
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+  schemas:
+    Place:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        city:
+          type: string
+        province:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

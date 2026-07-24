@@ -1,0 +1,162 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Drivers API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Drivers
+  description: Drivers and their assignments.
+paths:
+  /drivers:
+    get:
+      operationId: listDrivers
+      tags:
+      - Drivers
+      summary: List drivers
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of drivers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+    post:
+      operationId: createDriver
+      tags:
+      - Drivers
+      summary: Create a driver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Driver'
+      responses:
+        '200':
+          description: The created driver.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+  /drivers/{id}:
+    get:
+      operationId: getDriver
+      tags:
+      - Drivers
+      summary: Retrieve a driver
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested driver.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+    put:
+      operationId: updateDriver
+      tags:
+      - Drivers
+      summary: Update a driver
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Driver'
+      responses:
+        '200':
+          description: The updated driver.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+    delete:
+      operationId: deleteDriver
+      tags:
+      - Drivers
+      summary: Delete a driver
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the driver was deleted.
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  schemas:
+    Driver:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        status:
+          type: string
+        vehicle:
+          type: string
+          description: Public ID of the assigned vehicle.
+        location:
+          $ref: '#/components/schemas/Point'
+    Point:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+          description: '[longitude, latitude]'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

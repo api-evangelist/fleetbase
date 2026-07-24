@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Service Rates API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Service Rates
+  description: Pricing rules and delivery quotes.
+paths:
+  /service-rates:
+    get:
+      operationId: listServiceRates
+      tags:
+      - Service Rates
+      summary: List service rates
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of service rates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceRate'
+    post:
+      operationId: createServiceRate
+      tags:
+      - Service Rates
+      summary: Create a service rate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRate'
+      responses:
+        '200':
+          description: The created service rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRate'
+  /service-rates/{id}:
+    get:
+      operationId: getServiceRate
+      tags:
+      - Service Rates
+      summary: Retrieve a service rate
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested service rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRate'
+    delete:
+      operationId: deleteServiceRate
+      tags:
+      - Service Rates
+      summary: Delete a service rate
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the service rate was deleted.
+  /service-quotes:
+    post:
+      operationId: createServiceQuote
+      tags:
+      - Service Rates
+      summary: Generate a delivery quote
+      description: Calculates a delivery quote from configured service rates for a given pickup, dropoff, and payload.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceQuoteRequest'
+      responses:
+        '200':
+          description: The generated service quote.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuote'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  schemas:
+    ServiceQuote:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        service_rate:
+          type: string
+    ServiceQuoteRequest:
+      type: object
+      properties:
+        pickup:
+          type: string
+        dropoff:
+          type: string
+        service_type:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+    ServiceRate:
+      type: object
+      properties:
+        id:
+          type: string
+        service_name:
+          type: string
+        service_type:
+          type: string
+          description: Rate model (e.g. fixed_meters, per_drop, parcel).
+        currency:
+          type: string
+        base_fee:
+          type: number
+        per_meter_flat_rate_fee:
+          type: number
+    Entity:
+      type: object
+      description: A payload item within an order.
+      properties:
+        destination:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        currency:
+          type: string
+        price:
+          type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

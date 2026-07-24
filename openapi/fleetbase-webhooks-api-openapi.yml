@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Webhooks API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Webhooks
+  description: Event subscription endpoints.
+paths:
+  /webhook-endpoints:
+    get:
+      operationId: listWebhookEndpoints
+      tags:
+      - Webhooks
+      summary: List webhook endpoints
+      responses:
+        '200':
+          description: A list of webhook endpoints.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebhookEndpoint'
+    post:
+      operationId: createWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Create a webhook endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpoint'
+      responses:
+        '200':
+          description: The created webhook endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+  /webhook-endpoints/{id}:
+    get:
+      operationId: getWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Retrieve a webhook endpoint
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested webhook endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    delete:
+      operationId: deleteWebhookEndpoint
+      tags:
+      - Webhooks
+      summary: Delete a webhook endpoint
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the webhook endpoint was deleted.
+components:
+  schemas:
+    WebhookEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        version:
+          type: string
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

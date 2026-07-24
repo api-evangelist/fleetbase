@@ -1,0 +1,150 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Vehicles API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Vehicles
+  description: Vehicles in the fleet.
+paths:
+  /vehicles:
+    get:
+      operationId: listVehicles
+      tags:
+      - Vehicles
+      summary: List vehicles
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A list of vehicles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+    post:
+      operationId: createVehicle
+      tags:
+      - Vehicles
+      summary: Create a vehicle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+      responses:
+        '200':
+          description: The created vehicle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+  /vehicles/{id}:
+    get:
+      operationId: getVehicle
+      tags:
+      - Vehicles
+      summary: Retrieve a vehicle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested vehicle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+    put:
+      operationId: updateVehicle
+      tags:
+      - Vehicles
+      summary: Update a vehicle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+      responses:
+        '200':
+          description: The updated vehicle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+    delete:
+      operationId: deleteVehicle
+      tags:
+      - Vehicles
+      summary: Delete a vehicle
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the vehicle was deleted.
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: integer
+        plate_number:
+          type: string
+        vin:
+          type: string
+        status:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

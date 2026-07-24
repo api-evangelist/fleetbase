@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Tracking API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Tracking
+  description: Tracking status and telemetry.
+paths:
+  /tracking/{trackingNumber}:
+    get:
+      operationId: getTracking
+      tags:
+      - Tracking
+      summary: Retrieve tracking status
+      description: Returns tracking status and activity for a tracking number associated with an order or entity.
+      parameters:
+      - name: trackingNumber
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The tracking status and activity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingStatus'
+components:
+  schemas:
+    Point:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+          description: '[longitude, latitude]'
+    TrackingStatus:
+      type: object
+      properties:
+        tracking_number:
+          type: string
+        status:
+          type: string
+        code:
+          type: string
+        location:
+          $ref: '#/components/schemas/Point'
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.

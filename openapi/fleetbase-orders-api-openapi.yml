@@ -1,0 +1,217 @@
+openapi: 3.0.1
+info:
+  title: Fleetbase Contacts Orders API
+  description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
+  termsOfService: https://www.fleetbase.io/terms
+  contact:
+    name: Fleetbase Support
+    email: hello@fleetbase.io
+    url: https://docs.fleetbase.io
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  version: '1.0'
+servers:
+- url: https://api.fleetbase.io/v1
+  description: Fleetbase Cloud / self-hosted REST API
+security:
+- bearerAuth: []
+tags:
+- name: Orders
+  description: Create, dispatch, and manage delivery orders.
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      tags:
+      - Orders
+      summary: List orders
+      description: Returns a paginated list of orders for the organization.
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: status
+        in: query
+        description: Filter orders by status (e.g. created, dispatched, completed).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      tags:
+      - Orders
+      summary: Create an order
+      description: Creates a new delivery order with pickup, dropoff, and payload entities.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/{id}:
+    get:
+      operationId: getOrder
+      tags:
+      - Orders
+      summary: Retrieve an order
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    put:
+      operationId: updateOrder
+      tags:
+      - Orders
+      summary: Update an order
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: The updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      operationId: cancelOrder
+      tags:
+      - Orders
+      summary: Cancel an order
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Confirmation the order was cancelled.
+  /orders/{id}/dispatch:
+    patch:
+      operationId: dispatchOrder
+      tags:
+      - Orders
+      summary: Dispatch an order
+      description: Dispatches an order to an assigned driver.
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The dispatched order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+  schemas:
+    Entity:
+      type: object
+      description: A payload item within an order.
+      properties:
+        destination:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        currency:
+          type: string
+        price:
+          type: number
+    OrderCreateRequest:
+      type: object
+      properties:
+        pickup:
+          type: string
+        dropoff:
+          type: string
+        notes:
+          type: string
+        scheduled_at:
+          type: string
+          format: date-time
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Lifecycle status (created, dispatched, en route, completed, canceled).
+        pickup:
+          type: string
+          description: Public ID of the pickup place.
+        dropoff:
+          type: string
+          description: Public ID of the dropoff place.
+        driver_assigned:
+          type: string
+          description: Public ID of the assigned driver.
+        notes:
+          type: string
+        scheduled_at:
+          type: string
+          format: date-time
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+        tracking_number:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as a Bearer token in the Authorization header. Test keys are prefixed flb_test_ and live keys flb_live_.
