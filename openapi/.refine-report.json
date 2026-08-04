@@ -1,0 +1,32 @@
+{
+  "provider": "fleetbase",
+  "sources": [
+    "fleetbase-contacts-api-openapi.yml",
+    "fleetbase-drivers-api-openapi.yml",
+    "fleetbase-fleets-api-openapi.yml",
+    "fleetbase-orders-api-openapi.yml",
+    "fleetbase-places-api-openapi.yml",
+    "fleetbase-service-rates-api-openapi.yml",
+    "fleetbase-tracking-api-openapi.yml",
+    "fleetbase-vehicles-api-openapi.yml",
+    "fleetbase-webhooks-api-openapi.yml",
+    "fleetbase-zones-api-openapi.yml"
+  ],
+  "outputs": [
+    "fleetbase-contacts-api-openapi.yml",
+    "fleetbase-drivers-api-openapi.yml",
+    "fleetbase-fleets-api-openapi.yml",
+    "fleetbase-orders-api-openapi.yml",
+    "fleetbase-places-api-openapi.yml",
+    "fleetbase-service-rates-api-openapi.yml",
+    "fleetbase-tracking-api-openapi.yml",
+    "fleetbase-vehicles-api-openapi.yml",
+    "fleetbase-webhooks-api-openapi.yml",
+    "fleetbase-zones-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
