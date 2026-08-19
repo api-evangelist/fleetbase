@@ -1,0 +1,524 @@
+{
+  "item": [
+    {
+      "id": "735b5ce4-f816-4c3c-98c3-3e997d29c1ee",
+      "name": "Places",
+      "description": {
+        "content": "Addressable geocoded locations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e5cb808-5281-462e-b832-2048be4e01ea",
+          "name": "List places",
+          "request": {
+            "name": "List places",
+            "description": {},
+            "url": {
+              "path": [
+                "places"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of records to return (default 25, max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc2b4bd2-c881-450e-b19e-aa470b8c87c8",
+              "name": "A list of places.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"province\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"latitude\": 8748.9370189692,\n    \"longitude\": 4262.697886059559\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"province\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"latitude\": 3896.86030878284,\n    \"longitude\": 9041.334414906349\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc267398-84df-41ff-9592-672eada45153",
+          "name": "Create a place",
+          "request": {
+            "name": "Create a place",
+            "description": {},
+            "url": {
+              "path": [
+                "places"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a59b8fa3-fafb-47af-bde4-7899bda11268",
+              "name": "The created place.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab29e64e-e367-4cba-9554-16c9ce3ec711",
+          "name": "Retrieve a place",
+          "request": {
+            "name": "Retrieve a place",
+            "description": {},
+            "url": {
+              "path": [
+                "places",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2395ef55-4f95-4014-9e62-a813eb5b197e",
+              "name": "The requested place.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96fa4cbd-6722-4ba6-9f75-974bc76a274d",
+          "name": "Update a place",
+          "request": {
+            "name": "Update a place",
+            "description": {},
+            "url": {
+              "path": [
+                "places",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7fbb0534-b925-452e-b506-f4b2876206c8",
+              "name": "The updated place.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"province\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"country\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"longitude\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf61c503-cf6a-4d10-8af2-868bba2a9011",
+          "name": "Delete a place",
+          "request": {
+            "name": "Delete a place",
+            "description": {},
+            "url": {
+              "path": [
+                "places",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4856bf30-ed3c-427b-9c06-853c5bdb364c",
+              "name": "Confirmation the place was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fleetbase.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ab50676-0b09-4f87-927d-57a8ab4bc747",
+    "name": "Fleetbase Contacts Places API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.\n\nContact Support:\n Name: Fleetbase Support\n Email: hello@fleetbase.io",
+      "type": "text/plain"
+    }
+  }
+}

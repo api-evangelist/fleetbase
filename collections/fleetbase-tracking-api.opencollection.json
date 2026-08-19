@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Tracking API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve tracking status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/tracking/:trackingNumber",
+            "params": [
+              {
+                "name": "trackingNumber",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns tracking status and activity for a tracking number associated with an order or entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

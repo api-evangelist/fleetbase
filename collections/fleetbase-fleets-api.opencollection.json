@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Fleets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List fleets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/fleets",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 25, max 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "List fleets"
+        },
+        {
+          "info": {
+            "name": "Create a fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/fleets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a fleet"
+        },
+        {
+          "info": {
+            "name": "Retrieve a fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/fleets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a fleet"
+        },
+        {
+          "info": {
+            "name": "Update a fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.fleetbase.io/v1/fleets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a fleet"
+        },
+        {
+          "info": {
+            "name": "Delete a fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fleetbase.io/v1/fleets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a fleet"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

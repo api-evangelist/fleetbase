@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "b8e97553-6113-4754-89e1-a8384cf77563",
+      "name": "Tracking",
+      "description": {
+        "content": "Tracking status and telemetry.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8b01a58-7945-4362-8ecd-67a8078f5a0f",
+          "name": "Retrieve tracking status",
+          "request": {
+            "name": "Retrieve tracking status",
+            "description": {
+              "content": "Returns tracking status and activity for a tracking number associated with an order or entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tracking",
+                ":trackingNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackingNumber",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee1cc6d1-d89e-4473-9943-64513bd9b3ef",
+              "name": "The tracking status and activity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracking",
+                    ":trackingNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackingNumber",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tracking_number\": \"string\",\n  \"status\": \"string\",\n  \"code\": \"string\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      878.2549845065912,\n      9174.946690530178\n    ]\n  },\n  \"updated_at\": \"1981-10-10T23:54:53.044Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fleetbase.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b019257b-6ad2-4570-b9ed-25f16d0d120d",
+    "name": "Fleetbase Contacts Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.\n\nContact Support:\n Name: Fleetbase Support\n Email: hello@fleetbase.io",
+      "type": "text/plain"
+    }
+  }
+}

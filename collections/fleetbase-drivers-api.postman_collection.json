@@ -1,0 +1,524 @@
+{
+  "item": [
+    {
+      "id": "04ead35a-ee48-4b37-ba47-3608d0519106",
+      "name": "Drivers",
+      "description": {
+        "content": "Drivers and their assignments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae140a40-94b2-4d5f-a46e-884feee452c3",
+          "name": "List drivers",
+          "request": {
+            "name": "List drivers",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of records to return (default 25, max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29b76ffa-9b00-4858-9e1a-d1e67e2a79ab",
+              "name": "A list of drivers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"status\": \"string\",\n    \"vehicle\": \"string\",\n    \"location\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        8885.491929087204,\n        3882.6731737765795\n      ]\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"status\": \"string\",\n    \"vehicle\": \"string\",\n    \"location\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        2624.1452217116002,\n        3417.845352710116\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b10290e-f641-491f-8801-411328c84231",
+          "name": "Create a driver",
+          "request": {
+            "name": "Create a driver",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"<string>\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73c2bcf1-4a86-4b46-b81b-18a949030257",
+              "name": "The created driver.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfe93c8a-647e-49fd-90f5-65afc1f50259",
+          "name": "Retrieve a driver",
+          "request": {
+            "name": "Retrieve a driver",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4becc0dd-ca2e-4b89-b2bc-8b4985ac69f9",
+              "name": "The requested driver.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4a83587-6407-40fd-b8fe-858d9f4f207f",
+          "name": "Update a driver",
+          "request": {
+            "name": "Update a driver",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"<string>\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39b988e0-e839-42ec-98fa-a7247da7d903",
+              "name": "The updated driver.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"status\": \"<string>\",\n  \"vehicle\": \"<string>\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0ade172-8ef7-4b19-bdc6-f54e9c32c730",
+          "name": "Delete a driver",
+          "request": {
+            "name": "Delete a driver",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "980f3795-7176-48dd-8b65-eff80fa0e71d",
+              "name": "Confirmation the driver was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fleetbase.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "663ef29f-db00-4c5f-98ff-3b021be92d13",
+    "name": "Fleetbase Contacts Drivers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.\n\nContact Support:\n Name: Fleetbase Support\n Email: hello@fleetbase.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,638 @@
+{
+  "item": [
+    {
+      "id": "5d00b5dd-e32d-453a-a346-b8583f4ea270",
+      "name": "Orders",
+      "description": {
+        "content": "Create, dispatch, and manage delivery orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "582d2bf6-57c8-403c-8ad8-fa21de58f7eb",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "Returns a paginated list of orders for the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of records to return (default 25, max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter orders by status (e.g. created, dispatched, completed)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2ad5b30-4069-4678-9d9f-297f9b59a990",
+              "name": "A list of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"string\",\n    \"pickup\": \"string\",\n    \"dropoff\": \"string\",\n    \"driver_assigned\": \"string\",\n    \"notes\": \"string\",\n    \"scheduled_at\": \"2018-02-23T03:05:36.570Z\",\n    \"entities\": [\n      {\n        \"destination\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"string\",\n        \"price\": 3224.2063497969266\n      },\n      {\n        \"destination\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"string\",\n        \"price\": 1360.6514323784047\n      }\n    ],\n    \"tracking_number\": \"string\",\n    \"created_at\": \"1985-04-12T18:29:46.019Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"string\",\n    \"pickup\": \"string\",\n    \"dropoff\": \"string\",\n    \"driver_assigned\": \"string\",\n    \"notes\": \"string\",\n    \"scheduled_at\": \"1949-01-22T17:43:05.668Z\",\n    \"entities\": [\n      {\n        \"destination\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"string\",\n        \"price\": 1471.3086419536326\n      },\n      {\n        \"destination\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"string\",\n        \"price\": 3761.6508219187963\n      }\n    ],\n    \"tracking_number\": \"string\",\n    \"created_at\": \"2010-03-23T04:18:01.975Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a8f46d7-be0b-47c4-bfb7-d7ab0a64ca79",
+          "name": "Create an order",
+          "request": {
+            "name": "Create an order",
+            "description": {
+              "content": "Creates a new delivery order with pickup, dropoff, and payload entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pickup\": \"<string>\",\n  \"dropoff\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"scheduled_at\": \"<dateTime>\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce7b9ae3-73b6-4851-81f4-4b6d17a91fe8",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pickup\": \"<string>\",\n  \"dropoff\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"scheduled_at\": \"<dateTime>\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"pickup\": \"string\",\n  \"dropoff\": \"string\",\n  \"driver_assigned\": \"string\",\n  \"notes\": \"string\",\n  \"scheduled_at\": \"2003-04-15T11:11:54.784Z\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"tracking_number\": \"string\",\n  \"created_at\": \"1986-01-19T13:48:25.389Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b646bebc-7eb7-4dd2-9c39-a3ef55cbd64b",
+          "name": "Retrieve an order",
+          "request": {
+            "name": "Retrieve an order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73248f73-2ece-4561-9b59-11fbb28569de",
+              "name": "The requested order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"pickup\": \"string\",\n  \"dropoff\": \"string\",\n  \"driver_assigned\": \"string\",\n  \"notes\": \"string\",\n  \"scheduled_at\": \"2003-04-15T11:11:54.784Z\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"tracking_number\": \"string\",\n  \"created_at\": \"1986-01-19T13:48:25.389Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c406df5d-52e3-4820-9080-74625086ae06",
+          "name": "Update an order",
+          "request": {
+            "name": "Update an order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pickup\": \"<string>\",\n  \"dropoff\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"scheduled_at\": \"<dateTime>\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba20c66f-ff70-4104-bb6e-0f901e399857",
+              "name": "The updated order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pickup\": \"<string>\",\n  \"dropoff\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"scheduled_at\": \"<dateTime>\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"pickup\": \"string\",\n  \"dropoff\": \"string\",\n  \"driver_assigned\": \"string\",\n  \"notes\": \"string\",\n  \"scheduled_at\": \"2003-04-15T11:11:54.784Z\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"tracking_number\": \"string\",\n  \"created_at\": \"1986-01-19T13:48:25.389Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a424627-8e3b-46c1-bc3a-6b3eff6e74a5",
+          "name": "Cancel an order",
+          "request": {
+            "name": "Cancel an order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df894825-b62c-4c5c-b4a5-9514fe43d308",
+              "name": "Confirmation the order was cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26568e87-8b6b-45f8-8e91-5a9c74c13ead",
+          "name": "Dispatch an order",
+          "request": {
+            "name": "Dispatch an order",
+            "description": {
+              "content": "Dispatches an order to an assigned driver.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "dispatch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique public identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87ac7e1d-f48a-40c6-9928-1ced96a4291f",
+              "name": "The dispatched order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique public identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"pickup\": \"string\",\n  \"dropoff\": \"string\",\n  \"driver_assigned\": \"string\",\n  \"notes\": \"string\",\n  \"scheduled_at\": \"2003-04-15T11:11:54.784Z\",\n  \"entities\": [\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"destination\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"tracking_number\": \"string\",\n  \"created_at\": \"1986-01-19T13:48:25.389Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fleetbase.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb740580-8618-4890-adcc-201d5ececb40",
+    "name": "Fleetbase Contacts Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.\n\nContact Support:\n Name: Fleetbase Support\n Email: hello@fleetbase.io",
+      "type": "text/plain"
+    }
+  }
+}

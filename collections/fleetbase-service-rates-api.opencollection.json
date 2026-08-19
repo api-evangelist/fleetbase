@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Service Rates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List service rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/service-rates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 25, max 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "List service rates"
+        },
+        {
+          "info": {
+            "name": "Create a service rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/service-rates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a service rate"
+        },
+        {
+          "info": {
+            "name": "Retrieve a service rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/service-rates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a service rate"
+        },
+        {
+          "info": {
+            "name": "Delete a service rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fleetbase.io/v1/service-rates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a service rate"
+        },
+        {
+          "info": {
+            "name": "Generate a delivery quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/service-quotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates a delivery quote from configured service rates for a given pickup, dropoff, and payload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Places API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List places",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/places",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 25, max 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "List places"
+        },
+        {
+          "info": {
+            "name": "Create a place",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/places",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a place"
+        },
+        {
+          "info": {
+            "name": "Retrieve a place",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/places/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a place"
+        },
+        {
+          "info": {
+            "name": "Update a place",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.fleetbase.io/v1/places/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a place"
+        },
+        {
+          "info": {
+            "name": "Delete a place",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fleetbase.io/v1/places/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a place"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

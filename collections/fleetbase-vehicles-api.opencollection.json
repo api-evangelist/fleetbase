@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Vehicles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/vehicles",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (default 25, max 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "List vehicles"
+        },
+        {
+          "info": {
+            "name": "Create a vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/vehicles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a vehicle"
+        },
+        {
+          "info": {
+            "name": "Retrieve a vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/vehicles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a vehicle"
+        },
+        {
+          "info": {
+            "name": "Update a vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.fleetbase.io/v1/vehicles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a vehicle"
+        },
+        {
+          "info": {
+            "name": "Delete a vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fleetbase.io/v1/vehicles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a vehicle"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

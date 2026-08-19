@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fleetbase Contacts Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/webhook-endpoints"
+          },
+          "docs": "List webhook endpoints"
+        },
+        {
+          "info": {
+            "name": "Create a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.fleetbase.io/v1/webhook-endpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook endpoint"
+        },
+        {
+          "info": {
+            "name": "Retrieve a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fleetbase.io/v1/webhook-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a webhook endpoint"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fleetbase.io/v1/webhook-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique public identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a webhook endpoint"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
