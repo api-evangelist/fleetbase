@@ -26,6 +26,12 @@ tags:
 - Fleet Management
 - Supply Chain
 - Last Mile Delivery
+- Open-Source
+tags_raw:
+- Logistics
+- Fleet Management
+- Supply Chain
+- Last Mile Delivery
 - Open Source
 created: '2026-06-21'
 modified: '2026-06-21'
@@ -91,6 +97,8 @@ apis:
   humanURL: https://docs.fleetbase.io/api/
   baseURL: https://api.fleetbase.io/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -181,6 +189,8 @@ apis:
   humanURL: https://docs.fleetbase.io/api/
   baseURL: https://api.fleetbase.io/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
