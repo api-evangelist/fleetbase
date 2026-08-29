@@ -234,6 +234,9 @@ apis:
   - type: OpenCollection
     url: collections/fleetbase.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/fleetbase-capability-edges.yml
+  name: Fleetbase Business Capability Map
 - type: AgenticAccess
   url: agentic-access/fleetbase-agentic-access.yml
 - type: DomainSecurity

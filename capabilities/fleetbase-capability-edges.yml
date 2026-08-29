@@ -1,0 +1,75 @@
+slug: fleetbase
+provider: Fleetbase
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Tracking
+  spec_file: fleetbase-tracking-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.9
+  evidence: 'GET /tracking/{trackingNumber}  getTracking  Retrieve tracking status; schemas: TrackingStatus,
+    Point'
+  reason: Single operation resolves the status of a shipment by tracking number, returning a status and
+    geo point — shipment tracking / visibility, not a homograph.
+- tag: Vehicles
+  spec_file: fleetbase-vehicles-api-openapi.yml
+  capability_id: BC-2430
+  capability_id_l1: BC-2430
+  capability_name: Fleet & Mobile Asset Management
+  confidence: 0.8
+  evidence: 'GET /vehicles listVehicles List vehicles; POST /vehicles createVehicle Create a vehicle;
+    schema: Vehicle'
+  reason: CRUD over the vehicle register of a logistics/fleet operating system realises Fleet & Mobile
+    Asset Management; the generic CRUD surface does not name a specific sub-capability (not acquisition,
+    maintenance, or telematics).
+- tag: Drivers
+  spec_file: fleetbase-drivers-api-openapi.yml
+  capability_id: BC-2440
+  capability_id_l1: BC-2440
+  capability_name: Driver & Crew Operations Management
+  confidence: 0.75
+  evidence: POST /drivers "Create a driver"; GET /drivers/{id} "Retrieve a driver"; schemas Driver, Point
+  reason: Maintenance of driver records within a last-mile logistics operating system — driver operations
+    master. Operations are plain CRUD so no specific sub-capability (qualification, rostering, HOS) is
+    evidenced.
+- tag: Service Rates
+  spec_file: fleetbase-service-rates-api-openapi.yml
+  capability_id: BC-2520
+  capability_id_l1: BC-2520
+  capability_name: Freight Rating & Tariff Management
+  confidence: 0.75
+  evidence: POST /service-rates "Create a service rate"; POST /service-quotes createServiceQuote "Generate
+    a delivery quote"
+  reason: Definition of delivery service rates and computation of quotes from them is freight rating and
+    tariff management; surface spans both rate-card definition and quote calculation, so L1 only.
+- tag: Fleets
+  spec_file: fleetbase-fleets-api-openapi.yml
+  capability_id: BC-2430
+  capability_id_l1: BC-2430
+  capability_name: Fleet & Mobile Asset Management
+  confidence: 0.7
+  evidence: POST /fleets "Create a fleet"; GET /fleets "List fleets"; schema Fleet
+  reason: Management of fleet groupings of vehicles/drivers in a logistics OS maps to fleet & mobile asset
+    management at L1; CRUD-only surface does not evidence maintenance, telematics or utilisation sub-capabilities.
+- tag: Orders
+  spec_file: fleetbase-orders-api-openapi.yml
+  capability_id: BC-2420.10
+  capability_id_l1: BC-2420
+  capability_name: Dispatch Management
+  confidence: 0.7
+  evidence: PATCH /orders/{id}/dispatch dispatchOrder "Dispatch an order"
+  reason: Transport order lifecycle including explicit dispatch of the order to drivers/fleets in a last-mile
+    logistics platform. Dispatch operation grounds the L2; remaining CRUD is broader order handling, so
+    0.7.
