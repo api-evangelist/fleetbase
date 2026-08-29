@@ -7,6 +7,18 @@ description: Fleetbase is an open-source, modular logistics and supply chain ope
   Its RESTful API at https://api.fleetbase.io/v1 exposes orders, places, contacts,
   drivers, vehicles, fleets, zones, service rates, tracking, and webhooks, available
   both self-hosted under AGPL-3.0 and as a managed Fleetbase Cloud offering.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
