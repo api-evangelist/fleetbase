@@ -92,6 +92,8 @@ apis:
   humanURL: https://docs.fleetbase.io/api/
   baseURL: https://api.fleetbase.io/v1
   tags:
+  - Fleet
+  tags_raw:
   - Fleets
   properties:
   - type: OpenAPI
