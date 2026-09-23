@@ -1,16 +1,7 @@
 {
   "provider": "fleetbase",
   "sources": [
-    "fleetbase-contacts-api-openapi.yml",
-    "fleetbase-drivers-api-openapi.yml",
-    "fleetbase-fleets-api-openapi.yml",
-    "fleetbase-orders-api-openapi.yml",
-    "fleetbase-places-api-openapi.yml",
-    "fleetbase-service-rates-api-openapi.yml",
-    "fleetbase-tracking-api-openapi.yml",
-    "fleetbase-vehicles-api-openapi.yml",
-    "fleetbase-webhooks-api-openapi.yml",
-    "fleetbase-zones-api-openapi.yml"
+    "_original/fleetbase-openapi.yml"
   ],
   "outputs": [
     "fleetbase-contacts-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fleetbase-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fleetbase-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-drivers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-fleets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-places-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-service-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-vehicles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fleetbase-zones-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

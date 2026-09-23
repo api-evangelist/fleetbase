@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Fleetbase Contacts Orders API
+  title: Fleetbase Orders API
   description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
   termsOfService: https://www.fleetbase.io/terms
   contact:
@@ -126,13 +126,6 @@ paths:
                 $ref: '#/components/schemas/Order'
 components:
   parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
     id:
       name: id
       in: path
@@ -148,37 +141,14 @@ components:
         type: integer
         default: 25
         maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
   schemas:
-    Entity:
-      type: object
-      description: A payload item within an order.
-      properties:
-        destination:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        currency:
-          type: string
-        price:
-          type: number
-    OrderCreateRequest:
-      type: object
-      properties:
-        pickup:
-          type: string
-        dropoff:
-          type: string
-        notes:
-          type: string
-        scheduled_at:
-          type: string
-          format: date-time
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
     Order:
       type: object
       properties:
@@ -210,6 +180,36 @@ components:
         created_at:
           type: string
           format: date-time
+    Entity:
+      type: object
+      description: A payload item within an order.
+      properties:
+        destination:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        currency:
+          type: string
+        price:
+          type: number
+    OrderCreateRequest:
+      type: object
+      properties:
+        pickup:
+          type: string
+        dropoff:
+          type: string
+        notes:
+          type: string
+        scheduled_at:
+          type: string
+          format: date-time
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Fleetbase Contacts Service Rates API
+  title: Fleetbase Service Rates API
   description: RESTful API for the Fleetbase open-source logistics and supply chain operating system. Manage orders, places, contacts, drivers, vehicles, fleets, zones, service rates, tracking, and webhooks. Available self-hosted (AGPL-3.0) or via managed Fleetbase Cloud.
   termsOfService: https://www.fleetbase.io/terms
   contact:
@@ -103,13 +103,6 @@ paths:
                 $ref: '#/components/schemas/ServiceQuote'
 components:
   parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
     id:
       name: id
       in: path
@@ -125,31 +118,28 @@ components:
         type: integer
         default: 25
         maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
   schemas:
-    ServiceQuote:
+    Entity:
       type: object
+      description: A payload item within an order.
       properties:
-        id:
+        destination:
           type: string
-        amount:
-          type: number
+        name:
+          type: string
+        description:
+          type: string
         currency:
           type: string
-        service_rate:
-          type: string
-    ServiceQuoteRequest:
-      type: object
-      properties:
-        pickup:
-          type: string
-        dropoff:
-          type: string
-        service_type:
-          type: string
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
+        price:
+          type: number
     ServiceRate:
       type: object
       properties:
@@ -166,20 +156,30 @@ components:
           type: number
         per_meter_flat_rate_fee:
           type: number
-    Entity:
+    ServiceQuoteRequest:
       type: object
-      description: A payload item within an order.
       properties:
-        destination:
+        pickup:
           type: string
-        name:
+        dropoff:
           type: string
-        description:
+        service_type:
           type: string
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+    ServiceQuote:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
         currency:
           type: string
-        price:
-          type: number
+        service_rate:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
