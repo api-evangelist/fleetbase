@@ -125,13 +125,13 @@ components:
         longitude:
           type: number
   parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
       schema:
-        type: integer
-        default: 0
+        type: string
     limit:
       name: limit
       in: query
@@ -140,13 +140,13 @@ components:
         type: integer
         default: 25
         maximum: 100
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
       schema:
-        type: string
+        type: integer
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

@@ -102,30 +102,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServiceQuote'
 components:
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return (default 25, max 100).
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
   schemas:
+    ServiceQuote:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        service_rate:
+          type: string
     Entity:
       type: object
       description: A payload item within an order.
@@ -169,17 +157,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Entity'
-    ServiceQuote:
-      type: object
-      properties:
-        id:
-          type: string
-        amount:
-          type: number
-        currency:
-          type: string
-        service_rate:
-          type: string
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
   securitySchemes:
     bearerAuth:
       type: http

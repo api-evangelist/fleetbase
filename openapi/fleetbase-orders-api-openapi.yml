@@ -125,30 +125,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/Order'
 components:
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return (default 25, max 100).
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
   schemas:
+    OrderCreateRequest:
+      type: object
+      properties:
+        pickup:
+          type: string
+        dropoff:
+          type: string
+        notes:
+          type: string
+        scheduled_at:
+          type: string
+          format: date-time
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+    Entity:
+      type: object
+      description: A payload item within an order.
+      properties:
+        destination:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        currency:
+          type: string
+        price:
+          type: number
     Order:
       type: object
       properties:
@@ -180,36 +187,29 @@ components:
         created_at:
           type: string
           format: date-time
-    Entity:
-      type: object
-      description: A payload item within an order.
-      properties:
-        destination:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        currency:
-          type: string
-        price:
-          type: number
-    OrderCreateRequest:
-      type: object
-      properties:
-        pickup:
-          type: string
-        dropoff:
-          type: string
-        notes:
-          type: string
-        scheduled_at:
-          type: string
-          format: date-time
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
   securitySchemes:
     bearerAuth:
       type: http

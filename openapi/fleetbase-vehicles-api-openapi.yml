@@ -102,6 +102,29 @@ paths:
         '200':
           description: Confirmation the vehicle was deleted.
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
   schemas:
     Vehicle:
       type: object
@@ -120,29 +143,6 @@ components:
           type: string
         status:
           type: string
-  parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return (default 25, max 100).
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
