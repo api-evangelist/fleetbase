@@ -79,6 +79,14 @@ paths:
         '200':
           description: Confirmation the webhook endpoint was deleted.
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
   schemas:
     WebhookEndpoint:
       type: object
@@ -95,14 +103,6 @@ components:
           type: string
         version:
           type: string
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

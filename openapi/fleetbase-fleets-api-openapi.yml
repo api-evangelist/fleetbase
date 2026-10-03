@@ -102,6 +102,24 @@ paths:
         '200':
           description: Confirmation the fleet was deleted.
 components:
+  schemas:
+    Fleet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        drivers:
+          type: array
+          items:
+            type: string
+        vehicles:
+          type: array
+          items:
+            type: string
   parameters:
     id:
       name: id
@@ -125,24 +143,6 @@ components:
       schema:
         type: integer
         default: 0
-  schemas:
-    Fleet:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-        drivers:
-          type: array
-          items:
-            type: string
-        vehicles:
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http

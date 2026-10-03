@@ -102,29 +102,6 @@ paths:
         '200':
           description: Confirmation the driver was deleted.
 components:
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return (default 25, max 100).
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
   schemas:
     Point:
       type: object
@@ -155,6 +132,29 @@ components:
           description: Public ID of the assigned vehicle.
         location:
           $ref: '#/components/schemas/Point'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

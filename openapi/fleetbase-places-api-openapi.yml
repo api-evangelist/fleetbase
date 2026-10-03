@@ -102,28 +102,6 @@ paths:
         '200':
           description: Confirmation the place was deleted.
 components:
-  schemas:
-    Place:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        city:
-          type: string
-        province:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
   parameters:
     id:
       name: id
@@ -147,6 +125,28 @@ components:
       schema:
         type: integer
         default: 0
+  schemas:
+    Place:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        city:
+          type: string
+        province:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
   securitySchemes:
     bearerAuth:
       type: http

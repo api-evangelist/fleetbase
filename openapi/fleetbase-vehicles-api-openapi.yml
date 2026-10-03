@@ -102,6 +102,24 @@ paths:
         '200':
           description: Confirmation the vehicle was deleted.
 components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: integer
+        plate_number:
+          type: string
+        vin:
+          type: string
+        status:
+          type: string
   parameters:
     id:
       name: id
@@ -125,24 +143,6 @@ components:
       schema:
         type: integer
         default: 0
-  schemas:
-    Vehicle:
-      type: object
-      properties:
-        id:
-          type: string
-        make:
-          type: string
-        model:
-          type: string
-        year:
-          type: integer
-        plate_number:
-          type: string
-        vin:
-          type: string
-        status:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
