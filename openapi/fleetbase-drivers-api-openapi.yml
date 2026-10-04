@@ -103,17 +103,6 @@ paths:
           description: Confirmation the driver was deleted.
 components:
   schemas:
-    Point:
-      type: object
-      properties:
-        type:
-          type: string
-          example: Point
-        coordinates:
-          type: array
-          items:
-            type: number
-          description: '[longitude, latitude]'
     Driver:
       type: object
       properties:
@@ -132,7 +121,25 @@ components:
           description: Public ID of the assigned vehicle.
         location:
           $ref: '#/components/schemas/Point'
+    Point:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+          description: '[longitude, latitude]'
   parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -141,13 +148,6 @@ components:
         type: integer
         default: 25
         maximum: 100
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
     offset:
       name: offset
       in: query

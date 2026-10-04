@@ -103,6 +103,13 @@ paths:
                 $ref: '#/components/schemas/ServiceQuote'
 components:
   parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -111,13 +118,6 @@ components:
         type: integer
         default: 25
         maximum: 100
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
     offset:
       name: offset
       in: query

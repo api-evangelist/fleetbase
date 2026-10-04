@@ -125,29 +125,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Order'
 components:
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Number of records to return (default 25, max 100).
-      schema:
-        type: integer
-        default: 25
-        maximum: 100
-    id:
-      name: id
-      in: path
-      required: true
-      description: The unique public identifier of the resource.
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
   schemas:
     Order:
       type: object
@@ -210,6 +187,29 @@ components:
           type: string
         price:
           type: number
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The unique public identifier of the resource.
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Number of records to return (default 25, max 100).
+      schema:
+        type: integer
+        default: 25
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http
