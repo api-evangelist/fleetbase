@@ -127,6 +127,13 @@ components:
       description: The unique public identifier of the resource.
       schema:
         type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -135,13 +142,6 @@ components:
         type: integer
         default: 25
         maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        default: 0
   securitySchemes:
     bearerAuth:
       type: http
